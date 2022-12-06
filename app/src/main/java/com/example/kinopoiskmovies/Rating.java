@@ -1,20 +1,23 @@
 package com.example.kinopoiskmovies;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Rating {
 
     @SerializedName("kp")
-    private String kp;
+    private final double kp;
 
-    public Rating(String kp) {
+    public Rating(double kp) {
         this.kp = kp;
     }
 
-    public String getKp() {
+    public double getKp() {
         return kp;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Rating{" +

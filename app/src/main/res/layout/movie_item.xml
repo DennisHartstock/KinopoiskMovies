@@ -25,12 +25,11 @@
             android:id="@+id/tvRating"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:padding="16dp"
             android:layout_margin="16dp"
             tools:text="10.0"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:background="@android:color/holo_green_light"
+            tools:background="@drawable/circle_green"
             android:layout_height="wrap_content" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
