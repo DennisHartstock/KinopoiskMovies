@@ -2,6 +2,7 @@ package com.example.kinopoiskmovies;
 
 import io.reactivex.rxjava3.core.Single;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public interface ApiService {
 
@@ -12,5 +13,5 @@ public interface ApiService {
             "&sortField=votes.kp" +
             "&sortType=-1" +
             "&limit=50")
-    Single<MovieResponse> loadMovies();
+    Single<MovieResponse> loadMovies(@Query("page") int page);
 }
