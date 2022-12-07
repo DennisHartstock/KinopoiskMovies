@@ -64,7 +64,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         holder.tvRating.setBackground(background);
         holder.tvRating.setText(String.valueOf(rating));
 
-        if (position == movies.size() - 1 && onReachEndListener != null) {
+        if (position >= movies.size() / 2 && onReachEndListener != null) {
             onReachEndListener.onReachEnd();
         }
     }
