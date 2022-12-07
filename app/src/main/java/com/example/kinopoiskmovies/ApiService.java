@@ -12,6 +12,6 @@ public interface ApiService {
             "&search=5-10" +
             "&sortField=votes.kp" +
             "&sortType=-1" +
-            "&limit=100")
+            "&limit=10")
     Single<MovieResponse> loadMovies(@Query("page") int page);
 }

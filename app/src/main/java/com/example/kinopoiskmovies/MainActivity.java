@@ -23,7 +23,9 @@ public class MainActivity extends AppCompatActivity {
         rvMovies.setAdapter(moviesAdapter);
         rvMovies.setLayoutManager(new GridLayoutManager(this, 2));
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
-        viewModel.getMovie().observe(this, movies -> moviesAdapter.setMovies(movies));
+        viewModel.getMovies().observe(this, movies -> moviesAdapter.setMovies(movies));
         viewModel.loadMovies();
+
+        moviesAdapter.setOnReachEndListener(() -> viewModel.loadMovies());
     }
 }
