@@ -1,21 +1,25 @@
 package com.example.kinopoiskmovies;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
-public class Movie {
+import java.io.Serializable;
+
+public class Movie implements Serializable {
 
     @SerializedName("id")
-    private int id;
+    private final int id;
     @SerializedName("name")
-    private String name;
+    private final String name;
     @SerializedName("description")
-    private String description;
+    private final String description;
     @SerializedName("year")
-    private int year;
+    private final int year;
     @SerializedName("poster")
-    private Poster poster;
+    private final Poster poster;
     @SerializedName("rating")
-    private Rating rating;
+    private final Rating rating;
 
     public Movie(int id, String name, String description, int year, Poster poster, Rating rating) {
         this.id = id;
@@ -50,6 +54,7 @@ public class Movie {
         return rating;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Movie{" +

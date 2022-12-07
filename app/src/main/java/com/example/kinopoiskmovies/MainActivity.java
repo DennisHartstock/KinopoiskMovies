@@ -35,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
         });
         viewModel.getMovies().observe(this, movies -> moviesAdapter.setMovies(movies));
         moviesAdapter.setOnReachEndListener(() -> viewModel.loadMovies());
+        moviesAdapter.setOnMovieClickListener(movie -> startActivity(
+                MovieDetailActivity.newIntent(MainActivity.this, movie))
+        );
     }
 
     private void initViews() {
