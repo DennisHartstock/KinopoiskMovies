@@ -3,6 +3,7 @@ package com.example.kinopoiskmovies;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -10,9 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 public class MovieDetailActivity extends AppCompatActivity {
 
-    public static final String EXTRA_MOVIE = "movie";
+    private static final String TAG = "MovieDetailActivity";
+    private static final String EXTRA_MOVIE = "movie";
 
     private ImageView ivPoster;
     private TextView tvTitle;
@@ -34,6 +39,12 @@ public class MovieDetailActivity extends AppCompatActivity {
         tvTitle.setText(movie.getName());
         tvYear.setText(String.valueOf(movie.getYear()));
         tvDescription.setText(movie.getDescription());
+
+        ApiFactory.apiService.loadTrailers(movie.getId())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe((trailerResponse -> Log.d(TAG, trailerResponse.toString())),
+                        throwable -> Log.d(TAG, throwable.toString()));
     }
 
     private void initViews() {

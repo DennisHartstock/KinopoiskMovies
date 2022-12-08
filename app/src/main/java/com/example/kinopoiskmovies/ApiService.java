@@ -14,4 +14,7 @@ public interface ApiService {
             "&sortType=-1" +
             "&limit=100")
     Single<MovieResponse> loadMovies(@Query("page") int page);
+
+    @GET("movie?token=ETJBF54-9DAMMTH-QFV40W3-8ZEZHPW&field=id")
+    Single<TrailerResponse> loadTrailers(@Query("search") int id);
 }
