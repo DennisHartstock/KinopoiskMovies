@@ -8,16 +8,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
-
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MovieDetailActivity extends AppCompatActivity {
 
     private static final String TAG = "MovieDetailActivity";
     private static final String EXTRA_MOVIE = "movie";
+
+    private MovieDetailViewModel viewModel;
 
     private ImageView ivPoster;
     private TextView tvTitle;
@@ -28,6 +28,7 @@ public class MovieDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
+        viewModel = new ViewModelProvider(this).get(MovieDetailViewModel.class);
         initViews();
 
         Movie movie = (Movie) getIntent().getSerializableExtra(EXTRA_MOVIE);
@@ -40,11 +41,8 @@ public class MovieDetailActivity extends AppCompatActivity {
         tvYear.setText(String.valueOf(movie.getYear()));
         tvDescription.setText(movie.getDescription());
 
-        ApiFactory.apiService.loadTrailers(movie.getId())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((trailerResponse -> Log.d(TAG, trailerResponse.toString())),
-                        throwable -> Log.d(TAG, throwable.toString()));
+        viewModel.loadTrailers(movie.getId());
+        viewModel.getTrailers().observe(this, trailers -> Log.d(TAG, trailers.toString()));
     }
 
     private void initViews() {
