@@ -3,12 +3,12 @@ package com.example.kinopoiskmovies;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
@@ -23,6 +23,9 @@ public class MovieDetailActivity extends AppCompatActivity {
     private TextView tvTitle;
     private TextView tvYear;
     private TextView tvDescription;
+    private RecyclerView rvTrailers;
+
+    private TrailersAdapter trailersAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,8 @@ public class MovieDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_movie_detail);
         viewModel = new ViewModelProvider(this).get(MovieDetailViewModel.class);
         initViews();
+        trailersAdapter = new TrailersAdapter();
+        rvTrailers.setAdapter(trailersAdapter);
 
         Movie movie = (Movie) getIntent().getSerializableExtra(EXTRA_MOVIE);
 
@@ -42,7 +47,8 @@ public class MovieDetailActivity extends AppCompatActivity {
         tvDescription.setText(movie.getDescription());
 
         viewModel.loadTrailers(movie.getId());
-        viewModel.getTrailers().observe(this, trailers -> Log.d(TAG, trailers.toString()));
+        viewModel.getTrailers().observe(this,
+                trailers -> trailersAdapter.setTrailers(trailers));
     }
 
     private void initViews() {
@@ -50,6 +56,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         tvTitle = findViewById(R.id.tvTitle);
         tvYear = findViewById(R.id.tvYear);
         tvDescription = findViewById(R.id.tvDescription);
+        rvTrailers = findViewById(R.id.rvTrailers);
     }
 
     public static Intent newIntent(Context context, Movie movie) {
