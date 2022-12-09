@@ -5,30 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardBackgroundColor="@color/purple_500"
     app:cardCornerRadius="4dp"
     app:cardUseCompatPadding="true">
 
     <LinearLayout
+        android:id="@+id/llReviews"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="8dp">
+        android:alpha="0.5"
+        android:orientation="vertical"
+        tools:background="@android:color/darker_gray">
 
         <TextView
-            android:id="@+id/tvTrailerName"
-            android:layout_width="0dp"
+            android:id="@+id/tvAuthor"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_margin="8dp"
             android:textColor="@color/white"
-            tools:text="Trailer" />
+            android:textStyle="bold"
+            tools:text="Author" />
 
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:contentDescription="@null"
-            app:srcCompat="@android:drawable/ic_media_play" />
-
+        <TextView
+            android:id="@+id/tvReview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textColor="@color/white"
+            tools:text="Review" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
