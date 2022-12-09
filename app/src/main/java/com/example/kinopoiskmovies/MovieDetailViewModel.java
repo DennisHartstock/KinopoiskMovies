@@ -21,6 +21,7 @@ public class MovieDetailViewModel extends AndroidViewModel {
     private static final String TAG = "MovieDetailActivity";
 
     private final MutableLiveData<List<Trailer>> trailers = new MutableLiveData<>();
+    private final MutableLiveData<List<Review>> reviews = new MutableLiveData<>();
 
     public MovieDetailViewModel(@NonNull Application application) {
         super(application);
@@ -30,12 +31,25 @@ public class MovieDetailViewModel extends AndroidViewModel {
         return trailers;
     }
 
+    public LiveData<List<Review>> getReviews() {
+        return reviews;
+    }
+
     public void loadTrailers(int id) {
         Disposable disposable = ApiFactory.apiService.loadTrailers(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(trailerResponse -> trailerResponse.getTrailersList().getTrailers())
                 .subscribe((trailers::setValue), throwable -> Log.d(TAG, throwable.toString()));
+        compositeDisposable.add(disposable);
+    }
+
+    public void loadReviews(int id) {
+        Disposable disposable = ApiFactory.apiService.loadReviews(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(ReviewResponse::getReviews)
+                .subscribe(reviews::setValue, throwable -> Log.d(TAG, throwable.toString()));
         compositeDisposable.add(disposable);
     }
 

@@ -17,4 +17,7 @@ public interface ApiService {
 
     @GET("movie?token=ETJBF54-9DAMMTH-QFV40W3-8ZEZHPW&field=id")
     Single<TrailerResponse> loadTrailers(@Query("search") int id);
+
+    @GET("review?token=ETJBF54-9DAMMTH-QFV40W3-8ZEZHPW&field=movieId")
+    Single<ReviewResponse> loadReviews(@Query("search") int id);
 }

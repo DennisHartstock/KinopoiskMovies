@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -47,15 +48,18 @@ public class MovieDetailActivity extends AppCompatActivity {
         tvYear.setText(String.valueOf(movie.getYear()));
         tvDescription.setText(movie.getDescription());
 
-        viewModel.loadTrailers(movie.getId());
         viewModel.getTrailers().observe(this,
                 trailers -> trailersAdapter.setTrailers(trailers));
+        viewModel.loadTrailers(movie.getId());
 
         trailersAdapter.setOnTrailerClickListener(trailer -> {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(trailer.getUrl()));
             startActivity(intent);
         });
+
+        viewModel.getReviews().observe(this, reviews -> Log.d(TAG, reviews.toString()));
+        viewModel.loadReviews(movie.getId());
     }
 
     private void initViews() {
