@@ -1,13 +1,17 @@
 package com.example.kinopoiskmovies;
 
 import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
+@Entity(tableName = "favourite_movies")
 public class Movie implements Serializable {
 
+    @PrimaryKey
     @SerializedName("id")
     private final int id;
     @SerializedName("name")
