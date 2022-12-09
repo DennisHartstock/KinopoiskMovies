@@ -64,6 +64,11 @@ public class MovieDetailActivity extends AppCompatActivity {
 
         viewModel.getReviews().observe(this, reviews -> reviewsAdapter.setReviews(reviews));
         viewModel.loadReviews(movie.getId());
+
+//        MovieDao movieDao = MovieDatabase.getInstance(getApplication()).movieDao();
+//        movieDao.insertMovie(movie)
+//                .subscribeOn(Schedulers.io())
+//                .subscribe();
     }
 
     private void initViews() {

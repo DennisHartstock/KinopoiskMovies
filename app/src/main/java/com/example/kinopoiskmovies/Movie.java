@@ -1,6 +1,7 @@
 package com.example.kinopoiskmovies;
 
 import androidx.annotation.NonNull;
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -21,8 +22,10 @@ public class Movie implements Serializable {
     @SerializedName("year")
     private final int year;
     @SerializedName("poster")
+    @Embedded
     private final Poster poster;
     @SerializedName("rating")
+    @Embedded
     private final Rating rating;
 
     public Movie(int id, String name, String description, int year, Poster poster, Rating rating) {
