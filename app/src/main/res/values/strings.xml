@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Kinopoisk Movies</string>
+    <string name="menu_title_item_favourite">Избранное</string>
 </resources>
