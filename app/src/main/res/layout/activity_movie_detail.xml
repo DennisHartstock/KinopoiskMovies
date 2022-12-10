@@ -19,6 +19,16 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars" />
 
+        <ImageView
+            android:id="@+id/ivStar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:contentDescription="@null"
+            app:layout_constraintBottom_toBottomOf="@+id/ivPoster"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:srcCompat="@android:drawable/star_big_off" />
+
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
@@ -67,7 +77,9 @@
             android:nestedScrollingEnabled="false"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/rvTrailers"
-            tools:listitem="@layout/review_item" />
+            tools:listitem="@layout/review_item">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
