@@ -52,6 +52,13 @@ public class MovieDetailActivity extends AppCompatActivity {
                 .into(ivPoster);
 
         tvTitle.setText(movie.getName());
+
+        tvTitle.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("https://www.kinopoisk.gg/film/" + movie.getId() + "/"));
+            startActivity(intent);
+        });
+
         tvYear.setText(String.valueOf(movie.getYear()));
         tvDescription.setText(movie.getDescription());
 

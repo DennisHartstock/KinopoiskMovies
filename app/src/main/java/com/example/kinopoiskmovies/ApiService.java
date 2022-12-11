@@ -10,6 +10,8 @@ public interface ApiService {
             "?token=ETJBF54-9DAMMTH-QFV40W3-8ZEZHPW" +
             "&field=rating.kp" +
             "&search=5-10" +
+            "&field=year" +
+            "&search=1950-1980" +
             "&sortField=votes.kp" +
             "&sortType=-1" +
             "&limit=100")
